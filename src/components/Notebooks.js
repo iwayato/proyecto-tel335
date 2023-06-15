@@ -37,7 +37,7 @@ const Notebooks = () => {
                 </VStack>
             </GridItem>
             <GridItem area={'main'}>
-                <MDEditor height={"100%"} value={value} onChange={setValue} />
+                <MDEditor height={"100%"} value={value} onChange={setValue} fullscreen={false}/>
             </GridItem>
             <GridItem pl='2' bg='gray.200' area={'footer'}>
                 Proyecto TEL335
