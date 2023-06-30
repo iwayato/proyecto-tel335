@@ -10,8 +10,8 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-const signUpURL = 'http://localhost:3001/api/signup';
+import URLs from "../URLs";
+import Messages from "../Messages";
 
 const SignUp = () => {
     
@@ -34,8 +34,8 @@ const SignUp = () => {
         if (!name | !lastName | !userName | !email | !pwd) {
             return (
                 toast({
-                    title: 'Hay campos en blanco',
-                    description: "Debes completar todos los campos para registarte",
+                    title: Messages.SignUp.BlankFields,
+                    description: Messages.SignUp.MustCompleteAllFields,
                     status: 'error',
                     duration: 3000,
                     position: 'top',
@@ -44,7 +44,7 @@ const SignUp = () => {
             )
         }
         else {
-            axios.post(signUpURL, {
+            axios.post(URLs.SignUp, {
                 name: name,
                 lastname: lastName,
                 username: userName,
@@ -55,7 +55,7 @@ const SignUp = () => {
                 navigate('/')
                 return (
                     toast({
-                        title: `${response.data.Message}`,
+                        title: `${response.data}`,
                         status: 'success',
                         duration: 3000,
                         position: 'top',
@@ -66,7 +66,7 @@ const SignUp = () => {
             .catch((response) => {
                 return (
                     toast({
-                        title: `${response}`,
+                        title: Messages.SignUp.ErrorWhenSigningUp,
                         status: 'error',
                         duration: 3000,
                         position: 'top',

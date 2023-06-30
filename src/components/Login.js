@@ -11,8 +11,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
-const loginURL = 'http://localhost:3001/api/login';
+import URLs from "../URLs";
+import Messages from "../Messages"
 
 const Login = () => {
 
@@ -29,7 +29,7 @@ const Login = () => {
         if (!email | !pwd) {
             return (
                 toast({
-                    title: 'Ingresa tu email y contraseña',
+                    title: Messages.Login.CredentialsNeeded,
                     status: 'error',
                     duration: 3000,
                     position: 'top',
@@ -38,15 +38,15 @@ const Login = () => {
             )
         }
         else {
-            axios.post(loginURL, {
+            axios.post(URLs.Login, {
                 email: email,
                 password: pwd
             })
             .then((response) => {
-                navigate("Notebooks", {state:{userID:response.data.user_id}})
+                navigate("Notebooks", {state:{JWT:response.data}})
                 return (
                     toast({
-                        title: `${response.data.Message}`,
+                        title: Messages.Login.LoginSuccessful,
                         status: 'success',
                         duration: 3000,
                         position: 'top',
@@ -57,7 +57,7 @@ const Login = () => {
             .catch((response) => {
                 return (
                     toast({
-                        title: `${response}`,
+                        title: `${response.response.data}`,
                         status: 'error',
                         duration: 3000,
                         position: 'top',

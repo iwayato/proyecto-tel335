@@ -6,16 +6,15 @@ import {
 } from '@chakra-ui/react'
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from 'react';
-// import {useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 const mkdStr = ``;
 
 const Notebooks = () => {
-    // const location = useLocation();
-    // console.log(location.state.userID);
+    const location = useLocation();
+    console.log(location.state.JWT);
 
     const [value, setValue] = useState(mkdStr)
-    console.log(mkdStr);
 
     return (
         <Grid
