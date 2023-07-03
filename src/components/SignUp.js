@@ -63,7 +63,7 @@ const SignUp = () => {
                     })
                 )
             })
-            .catch((response) => {
+            .catch(() => {
                 return (
                     toast({
                         title: Messages.SignUp.ErrorWhenSigningUp,
