@@ -5,7 +5,10 @@ import {
     Button,
     Center,
     VStack,
-    Heading
+    Heading,
+    Card,
+    CardHeader,
+    CardBody
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -73,30 +76,37 @@ const Login = () => {
     }
 
     return (
-        <Center h='100vh' w='100%'>
-            <FormControl>
-                <VStack spacing={5}>
-                    <Heading fontSize='3xl'>Simple Notes</Heading>
-                    <Input
-                        w='20%'
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleEmailChange}>
-                    </Input>
-                    <Input
-                        w='20%'
-                        placeholder="Contraseña"
-                        type="password"
-                        value={pwd}
-                        onChange={handlePwdChange}>
-                    </Input>
-                    <Button
-                        onClick={login}>
-                        Iniciar sesión
-                    </Button>
-                <Link to="SignUp">¿Aún no estás registrado?</Link>
-                </VStack>
-            </FormControl>
+        <Center h='100vh' w='100%' backgroundColor={"gray.300"}>
+            <Card w={"20%"}>
+                <CardHeader>
+                    <Center>
+                        <Heading fontSize='3xl'>Simple Notes</Heading>
+                    </Center>
+                </CardHeader>
+                <CardBody>
+                    <FormControl>
+                        <VStack spacing={5}>
+                            <Input
+                                placeholder="Email"
+                                value={email}
+                                onChange={handleEmailChange}>
+                            </Input>
+                            <Input
+                                placeholder="Contraseña"
+                                type="password"
+                                value={pwd}
+                                onChange={handlePwdChange}>
+                            </Input>
+                            <Button
+                                colorScheme="blue"
+                                onClick={login}>
+                                Iniciar sesión
+                            </Button>
+                            <Link to="SignUp">¿Aún no estás registrado?</Link>
+                        </VStack>
+                    </FormControl>
+                </CardBody>
+            </Card>
         </Center>
     )
 }

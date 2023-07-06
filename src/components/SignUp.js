@@ -5,7 +5,10 @@ import {
     Button,
     Center,
     VStack,
-    Text
+    Heading,
+    Card,
+    CardHeader,
+    CardBody
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -78,48 +81,52 @@ const SignUp = () => {
     }
 
     return (
-        <Center h='100vh' w='100%'>
-            <FormControl>
-                <VStack spacing={5}>
-                    <Text fontSize='3xl'>Simple Notes</Text>
-                    <Input
-                        w='20%'
-                        placeholder="Nombre"
-                        value={name}
-                        onChange={handleNameChange}>
-                    </Input>
-                    <Input
-                        w='20%'
-                        placeholder="Apellido"
-                        value={lastName}
-                        onChange={handleLastNameChange}>
-                    </Input>
-                    <Input
-                        w='20%'
-                        placeholder="Nombre de usuario"
-                        value={userName}
-                        onChange={handleUserNameChange}>
-                    </Input>
-                    <Input
-                        w='20%'
-                        placeholder="Email"
-                        type="email"
-                        value={email}
-                        onChange={handleEmailChange}>
-                    </Input>
-                    <Input
-                        w='20%'
-                        placeholder="Contraseña"
-                        type="password"
-                        value={pwd}
-                        onChange={handlePwdChange}>
-                    </Input>
-                    <Button
-                        onClick={signUpState}>
-                        Regístrate
-                    </Button>
-                </VStack>
-            </FormControl>
+        <Center h='100vh' w='100%' backgroundColor={"gray.300"}>
+            <Card w="20%">
+                <CardHeader>
+                    <Center>
+                        <Heading fontSize='3xl'>Simple Notes</Heading>
+                    </Center>
+                </CardHeader>
+                <CardBody>
+                    <FormControl>
+                        <VStack spacing={5}>
+                            <Input
+                                placeholder="Nombre"
+                                value={name}
+                                onChange={handleNameChange}>
+                            </Input>
+                            <Input
+                                placeholder="Apellido"
+                                value={lastName}
+                                onChange={handleLastNameChange}>
+                            </Input>
+                            <Input
+                                placeholder="Nombre de usuario"
+                                value={userName}
+                                onChange={handleUserNameChange}>
+                            </Input>
+                            <Input
+                                placeholder="Email"
+                                type="email"
+                                value={email}
+                                onChange={handleEmailChange}>
+                            </Input>
+                            <Input
+                                placeholder="Contraseña"
+                                type="password"
+                                value={pwd}
+                                onChange={handlePwdChange}>
+                            </Input>
+                            <Button
+                                colorScheme="blue"
+                                onClick={signUpState}>
+                                Regístrate
+                            </Button>
+                        </VStack>
+                    </FormControl>
+                </CardBody>
+            </Card>
         </Center>
     )
 }
