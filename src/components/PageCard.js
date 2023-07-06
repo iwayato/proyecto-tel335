@@ -15,7 +15,7 @@ import {
     HStack,
     Input
 } from "@chakra-ui/react";
-import { DeleteIcon, ViewIcon } from '@chakra-ui/icons';
+import { DeleteIcon, ViewIcon, EditIcon, CheckIcon } from '@chakra-ui/icons';
 import URLs from "../URLs";
 import Messages from "../Messages";
 import { useState } from "react";
@@ -109,7 +109,7 @@ const PageCard = ({page_id, titulo, texto, fecha, jwt, refreshNotebookPagesHandl
                         <DeleteIcon></DeleteIcon>
                     </Button>
                     <Button
-                        w="70%"
+                        w="15%"
                         size="sm"
                         colorScheme={editTitle? "green" : "blue"}
                         onClick={() => {
@@ -122,7 +122,7 @@ const PageCard = ({page_id, titulo, texto, fecha, jwt, refreshNotebookPagesHandl
                                 setEditTitle(!editTitle)
                             }
                         }}>
-                            {editTitle? "Guardar" : "Cambiar título"}
+                            {editTitle? <CheckIcon></CheckIcon> : <EditIcon></EditIcon>}
                     </Button>
                 </HStack>
                 <Text pt='2' fontSize='sm'>{date.split("T")[0]}</Text>

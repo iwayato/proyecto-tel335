@@ -14,7 +14,9 @@ import {
     ModalBody,
     useDisclosure,
     Input,
-    HStack
+    HStack,
+    Center,
+    Text
 } from '@chakra-ui/react'
 import { CompactPicker } from 'react-color';
 import { AddIcon, DeleteIcon, PlusSquareIcon } from '@chakra-ui/icons';
@@ -133,6 +135,7 @@ const Notebooks = () => {
                 isClosable: false,
             })
             getUserNotebooks();
+            setPages([]);
         })
         .catch(() => {
             toast({
@@ -231,21 +234,42 @@ const Notebooks = () => {
                 </VStack>
             </GridItem>
             <GridItem area={'main'}>
-                <SimpleGrid columns={4} spacing={5} p={5}>
-                    {
-                        pages.map((page) => 
-                            <PageCard
-                                key={page.page_id}
-                                page_id={page.page_id}
-                                titulo={page.titulo}
-                                texto={page.texto}
-                                fecha={page.fecha}
-                                jwt={location.state.JWT}
-                                refreshNotebookPagesHandler={refreshNotebookPagesHandler}>
-                            </PageCard>
-                        )
-                    }
-                </SimpleGrid>
+                {
+                    (pages.length === 0)?
+                    <Center h="100%">
+                        <VStack spacing={5}>
+                            <Heading color='gray.700'>SimpleNotes</Heading>
+                            <HStack>
+                                <Text>En el menú izquierdo puedes crear Notebooks haciendo click en</Text>
+                                <Button>
+                                    <AddIcon></AddIcon>
+                                </Button>
+                            </HStack>
+                            <HStack>
+                                <Text>Puedes agregar notas a un notebook haciendo click en</Text>
+                                <Button>
+                                    <PlusSquareIcon></PlusSquareIcon>
+                                </Button>
+                            </HStack>
+                        </VStack>
+                    </Center>
+                    :
+                    <SimpleGrid columns={4} spacing={5} p={5}>
+                        {
+                            pages.map((page) => 
+                                <PageCard
+                                    key={page.page_id}
+                                    page_id={page.page_id}
+                                    titulo={page.titulo}
+                                    texto={page.texto}
+                                    fecha={page.fecha}
+                                    jwt={location.state.JWT}
+                                    refreshNotebookPagesHandler={refreshNotebookPagesHandler}>
+                                </PageCard>
+                            )
+                        }
+                    </SimpleGrid>
+                }
             </GridItem>
             <GridItem pl='2' bg='gray.200' area={'footer'}>
                 Proyecto TEL335
