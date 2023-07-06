@@ -5,7 +5,7 @@ import {
     Button,
     Center,
     VStack,
-    Text
+    Heading
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,11 @@ const Login = () => {
                 password: pwd
             })
             .then((response) => {
-                navigate("Notebooks", {state:{JWT:response.data}})
+                navigate("Notebooks", {state: {
+                    JWT : response.data.token,
+                    nombre : response.data.nombre,
+                    apellido : response.data.apellido
+                }})
                 return (
                     toast({
                         title: Messages.Login.LoginSuccessful,
@@ -72,7 +76,7 @@ const Login = () => {
         <Center h='100vh' w='100%'>
             <FormControl>
                 <VStack spacing={5}>
-                    <Text fontSize='3xl'>Simple Notes</Text>
+                    <Heading fontSize='3xl'>Simple Notes</Heading>
                     <Input
                         w='20%'
                         placeholder="Email"

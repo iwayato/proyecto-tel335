@@ -16,19 +16,25 @@ import {
     Input,
     HStack,
     Center,
-    Text
+    Text,
+    Avatar,
+    Flex,
+    Box,
+    Divider
 } from '@chakra-ui/react'
 import { CompactPicker } from 'react-color';
-import { AddIcon, DeleteIcon, PlusSquareIcon } from '@chakra-ui/icons';
+import { AddIcon, DeleteIcon, PlusSquareIcon, CloseIcon } from '@chakra-ui/icons';
 import PageCard from './PageCard';
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import URLs from '../URLs';
 import Messages from '../Messages';
 
 const Notebooks = () => {
     
+    const navigate = useNavigate();
     const toast = useToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const location = useLocation();
@@ -196,16 +202,26 @@ const Notebooks = () => {
             templateAreas={`"header header"
                             "nav main"
                             "nav footer"`}
-            gridTemplateRows={'50px 1fr 30px'}
+            gridTemplateRows={'60px 1fr 30px'}
             gridTemplateColumns={'320px 1fr'}
             h='100vh'
             gap='0'
             color='blackAlpha.700'
             fontWeight='bold'>
             <GridItem bg='gray.300' area={'header'}>
-                <Heading ml={6} mt={"5px"} size={"lg"}>
-                    SimpleNotes
-                </Heading>
+                <Flex px={6} h={14} alignItems={'center'} justifyContent={'space-between'}>
+                    <Heading size={"lg"}>
+                        SimpleNotes
+                    </Heading>
+                    <Box mt={1}>
+                        <HStack>
+                            <Text mr={3}>{location.state.nombre + " " + location.state.apellido}</Text>
+                            <Avatar name={location.state.nombre + " " + location.state.apellido}></Avatar>
+                            <Divider orientation='vertical'></Divider>
+                            <Button as={CloseIcon} colorScheme='red' onClick={() => {navigate("/")}}></Button>
+                        </HStack>
+                    </Box>
+                </Flex>
             </GridItem>
             <GridItem bg='gray.600' area={'nav'}>
                 <VStack gap={3} mt={5}>
@@ -238,7 +254,7 @@ const Notebooks = () => {
                     (pages.length === 0)?
                     <Center h="100%">
                         <VStack spacing={5}>
-                            <Heading color='gray.700'>SimpleNotes</Heading>
+                            <Heading color='gray.700'>{"Bienvenido " + location.state.nombre + " " + location.state.apellido}</Heading>
                             <HStack>
                                 <Text>En el menú izquierdo puedes crear Notebooks haciendo click en</Text>
                                 <Button>
